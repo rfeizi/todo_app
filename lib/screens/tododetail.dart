@@ -38,10 +38,10 @@ class TodoDetailState extends State {
     TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          //automaticallyImplyLeading: false,
           title: Text(todo.title),
           actions: <Widget>[
-            PopupMenuButton<String>(
+            /*PopupMenuButton<String>(
               onSelected: select,
               itemBuilder: (BuildContext context) {
                 return choices.map((String choice) {
@@ -50,6 +50,18 @@ class TodoDetailState extends State {
                     child: Text(choice),
                   );
                 }).toList();
+              },
+            ),*/
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.done),
+              onPressed: () {
+                save();
               },
             )
           ],
