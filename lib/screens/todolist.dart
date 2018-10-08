@@ -52,12 +52,26 @@ class TodoListState extends State {
   }
 
   ListView todoListItems() {
+
     return ListView.builder(
       itemCount: count,
       itemBuilder: (BuildContext context, int position) {
-        return Card(
-          color: Colors.white,
-          elevation: 2.0,
+        return Dismissible(
+          //color: Colors.white,
+          //elevation: 2.0,
+          key: Key(this.todos[position].id.toString()),
+          onDismissed: (direction) {
+            // Remove the item from our data source.
+
+            setState(() async {
+              int result = await helper.deleteTodo(this.todos[position].id);
+              //getData();
+            });
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(
+                content: Text(this.todos[position].title + "dismissed")));
+          },
+          background: Container(color: Colors.red),
           child: ListTile(
             leading: CircleAvatar(
               backgroundColor: getColor(this.todos[position].priority),
